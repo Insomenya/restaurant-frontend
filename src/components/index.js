@@ -1,3 +1,3 @@
-export * from './MainNavigation';
-export * from './PrivateRoute';
-export * from './Hero';
+export * from './Nav/MainNavigation';
+export * from './PrivateRoute/PrivateRoute';
+export * from './Hero/Hero';
