@@ -1,17 +1,18 @@
 import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 
 import { history } from 'src/helpers';
-import { Hero, MainNavigation, PrivateRoute } from 'src/components';
+import { Hero, MainNavigation, PrivateRoute, TopButton } from 'src/components';
 import { Home } from 'src/home';
 import { Login } from 'src/login';
 import { menuActions } from 'src/store';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 export { App };
 
 function App() {
   const dispatch = useDispatch();
+  const topRef = useRef();
   history.navigate = useNavigate();
   history.location = useLocation();
 
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <div className="app-container">
+      <a ref={topRef}></a>
       <MainNavigation />
       <div className="container pb-4">
         <Hero></Hero>
@@ -29,6 +31,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
+        <TopButton target={topRef} displayAfter={150}></TopButton>
       </div>
     </div>
   );
