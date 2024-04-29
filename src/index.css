@@ -36,7 +36,8 @@
 :root {
   --main-color: #FF7400;
   --sub-color: #D67E35;
-  --pale-color: #BC9060;
+  --pale-color: #bd9c78;
+  --pale-text: #7d654c;
   --bg-black: black;
   --bg-white: white;
   --text-light: white;

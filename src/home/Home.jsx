@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { Categories } from 'src/components';
+import { Categories, MealList } from 'src/components';
 
 export { Home };
 
@@ -10,24 +10,15 @@ function Home() {
     const mbc = menu.mealsByCategory;
 
     return (
-        <>
+        <div>
             {mbc?.length &&
-                <Categories></Categories>
+                <>
+                    <Categories></Categories>
+                    <MealList></MealList>
+                </>
             }
-            <div>
-                <h1>Hi {authUser?.firstName}!</h1>
-                <p>You're logged in with React 18 + Redux & JWT!!</p>
-                <h3>Users from secure api end point:</h3>
-                {menu?.length &&
-                    <ul>
-                        {menu.map(meal =>
-                            <li key={meal.id}>{meal.name} {meal.description}</li>
-                        )}
-                    </ul>
-                }
-                {menu.loading && <div className="spinner-border spinner-border-sm"></div>}
-                {menu.error && <div className="text-danger">Error loading users: {menu.error.message}</div>}
-            </div>
-        </>
+            {menu.loading && <div className="spinner-border spinner-border-sm"></div>}
+            {menu.error && <div className="text-danger">Ошибка при загрузке меню: {menu.error.message}</div>}
+        </div>
     );
 }
