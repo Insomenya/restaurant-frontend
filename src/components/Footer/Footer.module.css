@@ -1,0 +1,17 @@
+.footer {
+    background-color: var(--bg-black);
+    color: var(--text-light);
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    height: 40px;
+}
+
+.footer_nav li a {
+    color: var(--text-light);
+    text-decoration: none;
+}

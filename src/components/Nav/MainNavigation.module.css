@@ -20,6 +20,11 @@
 }
 
 .custom_nav .custom_dropdown_item:focus,
-.custom_nav .custom_dropdown_item:hover {
-    color: var(--text-dark);
+.custom_nav .custom_dropdown_item:hover,
+.custom_nav .custom_dropdown_item:active {
+    color: var(--text-dark)!important;
+}
+
+.custom_nav .custom_dropdown_item:active {
+    background-color: var(--color-pale);
 }

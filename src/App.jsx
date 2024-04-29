@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 
 import { history } from 'src/helpers';
-import { Hero, MainNavigation, PrivateRoute, TopButton } from 'src/components';
+import { Footer, Hero, MainNavigation, PrivateRoute, TopButton } from 'src/components';
 import { Home } from 'src/home';
 import { Login } from 'src/login';
 import { menuActions } from 'src/store';
@@ -37,6 +37,7 @@ function App() {
           <TopButton target={topRef} displayAfter={150}></TopButton>
         }
       </div>
+      <Footer></Footer>
     </div>
   );
 }

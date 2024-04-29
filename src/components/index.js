@@ -5,3 +5,4 @@ export * from './CategoryList/Categories';
 export * from './MealList/MealList';
 export * from './MealCategory/MealCategory';
 export * from './TopButton/TopButton';
+export * from './Footer/Footer';

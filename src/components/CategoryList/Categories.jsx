@@ -11,7 +11,7 @@ function Categories() {
     const mbc = menu.mealsByCategory;
 
     return (
-        <div className='pb-4 pt-4'>
+        <div className='pt-4'>
             {mbc?.length &&
                 <Swiper
                     modules={[Mousewheel]}
