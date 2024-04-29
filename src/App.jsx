@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 
 import { history } from 'src/helpers';
-import { Nav, PrivateRoute } from 'src/components';
+import { MainNavigation, PrivateRoute } from 'src/components';
 import { Home } from 'src/home';
 import { Login } from 'src/login';
 import { menuActions } from 'src/store';
@@ -21,8 +21,8 @@ function App() {
 
   return (
     <div className="app-container">
-      <Nav />
-      <div className="container pt-4 pb-4">
+      <MainNavigation />
+      <div className="container pb-4">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

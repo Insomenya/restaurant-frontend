@@ -1,3 +1,38 @@
+@font-face {
+  font-family: 'Stolzl';
+  src: url('src/assets/font/stolzl_regular.otf');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Stolzl';
+  src: url('src/assets/font/stolzl_bold.otf');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Stolzl';
+  src: url('src/assets/font/stolzl_light.otf');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Stolzl';
+  src: url('src/assets/font/stolzl_thin.otf');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Stolzl';
+  src: url('src/assets/font/stolzl_medium.otf');
+  font-weight: 500;
+  font-style: normal;
+}
+
 :root {
   --main-color: #FF7400;
   --sub-color: #D67E35;
@@ -25,4 +60,8 @@
     sans-serif;
     font-style: normal;
     font-weight: 300;
+}
+
+svg {
+  font-size: 24px;
 }

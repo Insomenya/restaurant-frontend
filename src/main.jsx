@@ -5,11 +5,10 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { store } from 'src/store';
 import { App } from 'src/App';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap'
+import 'swiper/css'
 import './index.css';
-
-// setup fake backend
-// import { fakeBackend } from './helpers';
-// fakeBackend();
 
 const container = document.getElementById('root');
 const root = createRoot(container);
