@@ -1,0 +1,31 @@
+.slide {
+    width: fit-content!important;
+}
+
+.category {
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: 400;
+    padding: 8px;
+    background-color: var(--bg-grey);
+    border: 1px solid var(--bg-grey);
+    border-radius: 200px;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-dark);
+}
+
+@media screen and (min-width: 1280px) {
+    .category {
+        padding: 10px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .category {
+        padding: 9px 20px 8px;
+    }
+}

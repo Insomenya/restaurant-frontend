@@ -41,6 +41,7 @@
   --bg-white: white;
   --text-light: white;
   --text-dark: black;
+  --bg-grey: #f0f0f0;
 }
 
 .app-container {

@@ -46,8 +46,35 @@ function createExtraReducers() {
             state.menu = { loading: true };
         })
         builder.addCase(fulfilled, (state, action) => {
-            state.menu = action.payload;
-            console.log(state.menu)
+            let meals = action.payload;
+
+            if (meals.length) {
+                let mealsByCategory = [];
+
+                let grp = meals.reduce((group, meal) => {
+                    const { category_name } = meal;
+                    group[category_name] = group[category_name] ?? [];
+                    group[category_name].push(meal);
+                    return group;
+                }, {});
+
+                let counter = 0;
+
+                for (const obj in grp) {
+                    mealsByCategory.push({
+                        category_id: counter++,
+                        category: obj,
+                        items: grp[obj]
+                    });
+                }
+
+                state.menu = {
+                    meals: meals,
+                    mealsByCategory: mealsByCategory
+                };
+            } else {
+                state.menu = []
+            }
         })
         builder.addCase(rejected, (state, action) => {
             state.menu = { error: action.error };
