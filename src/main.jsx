@@ -8,8 +8,8 @@ import { App } from 'src/App';
 import './index.css';
 
 // setup fake backend
-import { fakeBackend } from './helpers';
-fakeBackend();
+// import { fakeBackend } from './helpers';
+// fakeBackend();
 
 const container = document.getElementById('root');
 const root = createRoot(container);

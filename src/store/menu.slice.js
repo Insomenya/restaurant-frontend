@@ -4,7 +4,7 @@ import { fetchWrapper } from 'src/helpers';
 
 // create slice
 
-const name = 'users';
+const name = 'menu';
 const initialState = createInitialState();
 const extraActions = createExtraActions();
 const extraReducers = createExtraReducers();
@@ -12,44 +12,45 @@ const slice = createSlice({ name, initialState, extraReducers });
 
 // exports
 
-export const userActions = { ...slice.actions, ...extraActions };
-export const usersReducer = slice.reducer;
+export const menuActions = { ...slice.actions, ...extraActions };
+export const menuReducer = slice.reducer;
 
 // implementation
 
 function createInitialState() {
     return {
-        users: {}
+        menu: {}
     }
 }
 
 function createExtraActions() {
-    const baseUrl = `${process.env.REACT_APP_API_URL}/users`;
+    const baseUrl = `${import.meta.env.VITE_REACT_APP_API_URL}/menu/`;
 
     return {
-        getAll: getAll()
+        getMenu: getMenu()
     };
 
-    function getAll() {
+    function getMenu() {
         return createAsyncThunk(
-            `${name}/getAll`,
+            `${name}/getMenu`,
             async () => await fetchWrapper.get(baseUrl)
         );
     }
 }
 
 function createExtraReducers() {
-    var { pending, fulfilled, rejected } = extraActions.getAll;
+    var { pending, fulfilled, rejected } = extraActions.getMenu;
 
     return builder => {
         builder.addCase(pending, (state) => {
-            state.users = { loading: true };
+            state.menu = { loading: true };
         })
         builder.addCase(fulfilled, (state, action) => {
-            state.users = action.payload;
+            state.menu = action.payload;
+            console.log(state.menu)
         })
         builder.addCase(rejected, (state, action) => {
-            state.users = { error: action.error };
+            state.menu = { error: action.error };
         })
     };
 }
