@@ -1,3 +1,7 @@
+.category_slider {
+    width: 100%;
+}
+
 .category_grid {
     display: flex;
     flex-direction: row;
@@ -114,4 +118,16 @@
     font-size: .75em;
     text-transform: uppercase;
     font-weight: 400;
+}
+
+@media screen and (max-width: 768px) {
+    .meal_container .meal_add {
+        width: 50px;
+        height: 30px;
+        padding: 0;
+    }
+
+    .meal_container .meal_price {
+        font-size: 15px;
+    }
 }

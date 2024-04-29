@@ -7,10 +7,12 @@ import { Login } from 'src/login';
 import { menuActions } from 'src/store';
 import { useDispatch } from 'react-redux';
 import { useEffect, useRef } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 export { App };
 
 function App() {
+  const isNotMobile = useMediaQuery({ query: '(min-width: 992px)' });
   const dispatch = useDispatch();
   const topRef = useRef();
   history.navigate = useNavigate();
@@ -31,7 +33,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
-        <TopButton target={topRef} displayAfter={150}></TopButton>
+        {isNotMobile &&
+          <TopButton target={topRef} displayAfter={150}></TopButton>
+        }
       </div>
     </div>
   );
