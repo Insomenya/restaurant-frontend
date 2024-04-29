@@ -1,9 +1,9 @@
 import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 
-import { history } from 'helpers';
-import { Nav, PrivateRoute } from 'components';
-import { Home } from 'home';
-import { Login } from 'login';
+import { history } from 'src/helpers';
+import { Nav, PrivateRoute } from 'src/components';
+import { Home } from 'src/home';
+import { Login } from 'src/login';
 
 export { App };
 

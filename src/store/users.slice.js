@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { fetchWrapper } from 'helpers';
+import { fetchWrapper } from 'src/helpers';
 
 // create slice
 
@@ -39,22 +39,17 @@ function createExtraActions() {
 }
 
 function createExtraReducers() {
-    return {
-        ...getAll()
-    };
+    var { pending, fulfilled, rejected } = extraActions.getAll;
 
-    function getAll() {
-        var { pending, fulfilled, rejected } = extraActions.getAll;
-        return builder => {
-            builder.addCase(pending, (state) => {
-                state.users = { loading: true };
-            })
-            builder.addCase(fulfilled, (state, action) => {
-                state.users = action.payload;
-            })
-            builder.addCase(rejected, (state, action) => {
-                state.users = { error: action.error };
-            })
-        };
-    }
+    return builder => {
+        builder.addCase(pending, (state) => {
+            state.users = { loading: true };
+        })
+        builder.addCase(fulfilled, (state, action) => {
+            state.users = action.payload;
+        })
+        builder.addCase(rejected, (state, action) => {
+            state.users = { error: action.error };
+        })
+    };
 }
