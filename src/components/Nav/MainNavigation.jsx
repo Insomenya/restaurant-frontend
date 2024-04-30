@@ -9,7 +9,7 @@ import { useCart } from 'react-use-cart';
 export { MainNavigation };
 
 function MainNavigation() {
-    const { totalUniqueItems } = useCart();
+    const { totalUniqueItems, isEmpty } = useCart();
     const authUser = useSelector(x => x.auth.user);
     const dispatch = useDispatch();
     const logout = () => dispatch(authActions.logout());
@@ -40,7 +40,12 @@ function MainNavigation() {
                         <ul className="navbar-nav mb-2 mb-lg-0 w-100">
                             <li className='nav-item'>
                                 <NavLink to="/cart" className="nav-link">
-                                    <CiShoppingBasket></CiShoppingBasket> Корзина <span className={`${classes.cart_count}`}>{totalUniqueItems}</span>
+                                    <CiShoppingBasket></CiShoppingBasket> Корзина {
+                                        isEmpty ? '' :
+                                        (
+                                            <span className={`${classes.cart_count}`}>{totalUniqueItems}</span>
+                                        )
+                                    }
                                 </NavLink>
                             </li>
                             <li className='nav-item dropdown'>
