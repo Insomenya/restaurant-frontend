@@ -1,8 +1,48 @@
+import { useCart } from 'react-use-cart';
 import classes from './MenuMeal.module.css';
 
 export { MenuMeal };
 
 function MenuMeal({ meal, isGrid }) {
+
+    const { inCart, getItem, updateItemQuantity, addItem } = useCart();
+
+    const mealToAdd = {
+        id: meal.id,
+        name: meal.name,
+        img: meal.img,
+        price: meal.price
+    }
+
+    const addToCart = () => {
+        addItem(mealToAdd);
+    }
+
+    const addMore = (mealInCart) => {
+        updateItemQuantity(mealInCart.id, mealInCart.quantity + 1);
+    }
+
+    const removeSome = (mealInCart) => {
+        updateItemQuantity(mealInCart.id, mealInCart.quantity - 1);
+    }
+
+    const showButton = () => {
+        if (inCart(meal.id)) {
+            let mealInCart = getItem(meal.id);
+
+            return (
+                <div className={`btn ${classes.cart_control}`}>
+                    <div className={`btn ${classes.cart_minus}`} onClick={() => { removeSome(mealInCart) }}>-</div>
+                    <div className={`${classes.cart_quantity}`}>{mealInCart.quantity}</div>
+                    <div className={`btn ${classes.cart_plus}`} onClick={() => { addMore(mealInCart) }}>+</div>
+                </div>
+            );
+        } else {
+            return (
+                <button className={`btn ${classes.meal_add}`} onClick={() => { addToCart() }}>+</button>
+            );
+        }
+    }
 
     return (
         <div className={`${classes.meal_container} ${isGrid ? classes.grid : ''}`}>
@@ -16,7 +56,7 @@ function MenuMeal({ meal, isGrid }) {
                 </div>
                 <div className={`${classes.meal_footer}`}>
                     <div className={`${classes.meal_price}`}>{meal.price}<span className={`${classes.rub}`}>р</span></div>
-                    <button className={`btn ${classes.meal_add}`}>+</button>
+                    {showButton()}
                 </div>
             </div>
         </div>

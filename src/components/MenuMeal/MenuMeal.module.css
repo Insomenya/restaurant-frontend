@@ -79,13 +79,13 @@
     white-space: nowrap;
 }
 
-.meal_container .meal_add {
+.meal_container .meal_add,
+.meal_container .cart_control {
     display: inline-flex;
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
     padding: 0 10px;
-    width: 80px;
     height: 40px;
     font-size: 32px;
     font-weight: 300;
@@ -95,9 +95,34 @@
     color: var(--pale-text);
 }
 
+.cart_control .cart_minus,
+.cart_control .cart_plus,
+.cart_control .cart_quantity {
+    color: var(--pale-text);
+}
+
+.cart_control .cart_quantity {
+    cursor: initial;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.cart_control .cart_quantity:active,
+.cart_control .cart_quantity:focus {
+    outline: none;
+    border: none
+}
+
+.meal_container .meal_add {
+    width: 80px;
+}
+
 .meal_container .meal_add:focus,
 .meal_container .meal_add:hover,
-.meal_container .meal_add:active {
+.meal_container .meal_add:active,
+.meal_container .cart_control:focus,
+.meal_container .cart_control:hover,
+.meal_container .cart_control:active {
     background-color: var(--pale-color) !important;
 }
 

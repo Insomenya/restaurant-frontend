@@ -1,6 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
+import { CartProvider } from "react-use-cart";
 import { BrowserRouter } from 'react-router-dom';
 
 import { store } from 'src/store';
@@ -16,9 +17,11 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <CartProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </CartProvider>
     </Provider>
   </React.StrictMode>
 );

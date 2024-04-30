@@ -4,10 +4,12 @@ import classes from './MainNavigation.module.css'
 import { CiForkAndKnife, CiShoppingBasket, CiLocationOn  } from 'react-icons/ci'
 
 import { authActions } from 'src/store';
+import { useCart } from 'react-use-cart';
 
 export { MainNavigation };
 
 function MainNavigation() {
+    const { totalUniqueItems } = useCart();
     const authUser = useSelector(x => x.auth.user);
     const dispatch = useDispatch();
     const logout = () => dispatch(authActions.logout());
@@ -38,7 +40,7 @@ function MainNavigation() {
                         <ul className="navbar-nav mb-2 mb-lg-0 w-100">
                             <li className='nav-item'>
                                 <NavLink to="/cart" className="nav-link">
-                                   <CiShoppingBasket></CiShoppingBasket> Корзина (0)
+                                    <CiShoppingBasket></CiShoppingBasket> Корзина <span className={`${classes.cart_count}`}>{totalUniqueItems}</span>
                                 </NavLink>
                             </li>
                             <li className='nav-item dropdown'>
