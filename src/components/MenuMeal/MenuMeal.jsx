@@ -11,7 +11,8 @@ function MenuMeal({ meal, isGrid }) {
         id: meal.id,
         name: meal.name,
         img: meal.img,
-        price: meal.price
+        price: meal.price,
+        category: meal.category_name,
     }
 
     const addToCart = () => {

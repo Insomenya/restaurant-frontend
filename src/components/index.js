@@ -7,3 +7,4 @@ export * from './MealCategory/MealCategory';
 export * from './TopButton/TopButton';
 export * from './Footer/Footer';
 export * from './MenuMeal/MenuMeal';
+export * from './OrderSummary/OrderSummary';

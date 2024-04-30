@@ -8,6 +8,7 @@ import { menuActions } from 'src/store';
 import { useDispatch } from 'react-redux';
 import { useEffect, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { Cart } from 'src/cart';
 
 export { App };
 
@@ -30,6 +31,7 @@ function App() {
         <Hero></Hero>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

@@ -15,3 +15,19 @@
     color: var(--text-light);
     text-decoration: none;
 }
+
+.footer_flex {
+    display: flex;
+}
+
+@media (max-width: 768px) {
+    .footer_flex {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .footer {
+        height: min-content;
+        padding: 20px 0;
+    }
+}
