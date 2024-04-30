@@ -54,9 +54,6 @@ function MainNavigation() {
                                 </a>
                                 <ul className='dropdown-menu navbar-light' aria-labelledby="navbarDropdownMenuLink">
                                     <li>
-                                        <NavLink to="/profile" className={`nav-link dropdown-item ${classes.custom_dropdown_item}`}>Профиль</NavLink>
-                                    </li>
-                                    <li>
                                         <NavLink to="/profile" className={`nav-link dropdown-item ${classes.custom_dropdown_item}`}>История заказов</NavLink>
                                     </li>
                                     <li>

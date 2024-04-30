@@ -1,15 +1,34 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import classes from './Cart.module.css';
 import { useCart } from 'react-use-cart';
 import { CiTrash, CiTurnL1 } from 'react-icons/ci';
 import { OrderSummary } from 'src/components';
 import { NavLink } from 'react-router-dom';
+import { ordersActions } from 'src/store';
 
 export { Cart };
 
 function Cart() {
     const { user: authUser } = useSelector(x => x.auth);
-    const { totalUniqueItems, cartTotal, emptyCart, isEmpty } = useCart();
+    const orders = useSelector(x => x.orders.orders);
+    const ordersError = useSelector(x => x.orders.error);
+    const { totalUniqueItems, cartTotal, emptyCart, isEmpty, items } = useCart();
+    const dispatch = useDispatch();
+
+    const placeOrderHandler = () => {
+        let orderedMeals = items.map((item) => ({
+            meal_id: item.id,
+            quantity: item.quantity
+        }));
+
+        let newOrder = {
+            status: 'ADDED',
+            ordered_meals: orderedMeals
+        };
+
+        dispatch(ordersActions.placeOrder(newOrder));
+        emptyCart();
+    }
 
     return (
         <section className={`h-100 h-custom ${classes.cart_container}`}>
@@ -50,7 +69,13 @@ function Cart() {
                                                 <h5 className={`${classes.cart_total_price}`}>{cartTotal}<span className={`${classes.rub}`}>р</span></h5>
                                             </div>
 
-                                            <button type="button" data-mdb-button-init data-mdb-ripple-init className={`btn btn-block btn-lg ${isEmpty ? 'disabled' : ''} ${classes.cart_order_button}`} data-mdb-ripple-color="dark">Заказать</button>
+                                            {ordersError &&
+                                                <p className='text-danger'>
+                                                    Ошибка при создании заказа: {ordersError.message}
+                                                </p>
+                                            }
+
+                                            <button type="button" data-mdb-button-init data-mdb-ripple-init className={`btn btn-block btn-lg ${isEmpty ? 'disabled' : ''} ${classes.cart_order_button}`} data-mdb-ripple-color="dark" onClick={() => { placeOrderHandler() }}>Заказать</button>
 
                                         </div>
                                     </div>
