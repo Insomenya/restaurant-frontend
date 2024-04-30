@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { Categories, MealList } from 'src/components';
+import { Categories, Menu } from 'src/components';
 
 export { Home };
 
@@ -14,7 +14,7 @@ function Home() {
             {mbc?.length &&
                 <>
                     <Categories></Categories>
-                    <MealList></MealList>
+                    <Menu></Menu>
                 </>
             }
             {menu.loading && <div className="spinner-border spinner-border-sm"></div>}

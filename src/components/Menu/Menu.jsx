@@ -1,10 +1,10 @@
 import { MealCategory } from 'src/components';
-import classes from './MealList.module.css';
+import classes from './Menu.module.css';
 import { useSelector } from 'react-redux';
 
-export { MealList };
+export { Menu };
 
-function MealList() {
+function Menu() {
 
     const { menu } = useSelector(x => x.menu);
     const mbc = menu.mealsByCategory;
