@@ -34,44 +34,113 @@ function createReducers() {
     function logout(state) {
         state.user = null;
         localStorage.removeItem('user');
-        history.navigate('/login');
+        history.navigate('/auth');
     }
 }
 
 function createExtraActions() {
-    const baseUrl = `${import.meta.env.VITE_REACT_APP_API_URL}/users`;
+    const baseUrl = `${import.meta.env.VITE_REACT_APP_API_URL}/auth`;
 
     return {
-        login: login()
+        authenticate: authenticate(),
+        getUserData: getUserData(),
+        verifyToken: verifyToken(),
+        createUser: createUser(),
     };
 
-    function login() {
+    function authenticate() {
         return createAsyncThunk(
-            `${name}/login`,
-            async ({ username, password }) => await fetchWrapper.post(`${baseUrl}/authenticate`, { username, password })
+            `${name}/authenticate`,
+            async ({ email, password }) => await fetchWrapper.post(`${baseUrl}/jwt/create/`, { email, password })
+        );
+    }
+
+    function getUserData() {
+        return createAsyncThunk(
+            `${name}/getUserData/`,
+            async () => await fetchWrapper.get(`${baseUrl}/details/`)
+        );
+    }
+
+    function verifyToken() {
+        return createAsyncThunk(
+            `${name}/verifyToken`,
+            async ({ token }) => await fetchWrapper.post(`${baseUrl}/jwt/verify/`, { token })
+        );
+    }
+
+    function createUser() {
+        return createAsyncThunk(
+            `${name}/createUser`,
+            async ({ username, email, phone_number, password }) => await fetchWrapper.post(`${baseUrl}/signup/`, { username, email, phone_number, password })
         );
     }
 }
 
 function createExtraReducers() {
-    var { pending, fulfilled, rejected } = extraActions.login;
+    var authenticate = extraActions.authenticate;
+    var getUserData = extraActions.getUserData;
+    var verifyToken = extraActions.verifyToken;
+    var createUser = extraActions.createUser;
 
     return builder => {
-        builder.addCase(pending, (state) => {
+        builder.addCase(authenticate.pending, (state) => {
             state.error = null;
         })
-        builder.addCase(fulfilled, (state, action) => {
-            const user = action.payload;
+        builder.addCase(authenticate.fulfilled, (state, action) => {
+            const accessToken = action.payload.access;
+            
+            state.user = {
+                ...state.user,
+                token: accessToken
+            };
+        })
+        builder.addCase(authenticate.rejected, (state, action) => {
+            state.error = action.error;
+        })
+        builder.addCase(getUserData.pending, (state) => {
+            state.error = null;
+        })
+        builder.addCase(getUserData.fulfilled, (state, action) => {
+            const userData = action.payload;
+            const user = {
+                ...state.user,
+                ...userData,
+            };
 
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('user', JSON.stringify(user));
             state.user = user;
 
-            // get return url from location state or default to home page
+            localStorage.setItem('user', JSON.stringify(user));
             const { from } = history.location.state || { from: { pathname: '/' } };
             history.navigate(from);
         })
-        builder.addCase(rejected, (state, action) => {
+        builder.addCase(getUserData.rejected, (state, action) => {
+            state.error = action.error;
+            state.user = null;
+        })
+        builder.addCase(verifyToken.pending, () => { })
+        builder.addCase(verifyToken.fulfilled, () => { })
+        builder.addCase(verifyToken.rejected, (state) => {
+            state.user = null;
+            localStorage.removeItem('user');
+            history.navigate('/');
+        })
+        builder.addCase(createUser.pending, (state) => {
+            state.error = null;
+        })
+        builder.addCase(createUser.fulfilled, (state, action) => {
+            const userData = action.payload;
+            const user = {
+                ...state.user,
+                ...userData,
+            };
+
+            state.user = user;
+
+            localStorage.setItem('user', JSON.stringify(user));
+            history.navigate('/');
+        })
+        builder.addCase(createUser.rejected, (state, action) => {
             state.error = action.error;
         })
     };

@@ -1,19 +1,21 @@
 import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 
 import { history } from 'src/helpers';
-import { Footer, Hero, MainNavigation, PrivateRoute, TopButton } from 'src/components';
+import { Footer, Hero, MainNavigation, PrivateRoute, RegisterForm, TopButton } from 'src/components';
 import { Home } from 'src/home';
-import { Login } from 'src/login';
-import { menuActions } from 'src/store';
-import { useDispatch } from 'react-redux';
+import { Auth } from 'src/auth';
+import { menuActions, authActions } from 'src/store';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Cart } from 'src/cart';
+import { History } from 'src/history';
 
 export { App };
 
 function App() {
   const isNotMobile = useMediaQuery({ query: '(min-width: 992px)' });
+  const token = useSelector(x => x.auth.user?.token);
   const dispatch = useDispatch();
   const topRef = useRef();
   history.navigate = useNavigate();
@@ -21,6 +23,9 @@ function App() {
 
   useEffect(() => {
     dispatch(menuActions.getMenu());
+    if (token) {
+      dispatch(authActions.verifyToken({ token }));
+    }
   }, []);
 
   return (
@@ -32,7 +37,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/reg" element={<RegisterForm />} />
+          <Route path="/profile" element={<History />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
         {isNotMobile &&

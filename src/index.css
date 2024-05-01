@@ -67,3 +67,18 @@
 svg {
   font-size: 24px;
 }
+
+.react-tabs__tab--selected button {
+  background-color: var(--sub-color);
+  box-shadow: none;
+  max-width: 350px;
+  color: var(--text-light);
+}
+
+.react-tabs__tab--selected button:hover,
+.react-tabs__tab--selected button:active,
+.react-tabs__tab--selected button:focus {
+  background-color: var(--sub-color);
+  color: var(--text-light);
+  box-shadow: none;
+}

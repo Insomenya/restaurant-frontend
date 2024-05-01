@@ -7,8 +7,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { store } from 'src/store';
 import { App } from 'src/App';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap'
-import 'swiper/css'
+import 'bootstrap';
+import 'swiper/css';
+import 'react-tabs/style/react-tabs.css';
 import './index.css';
 
 const container = document.getElementById('root');

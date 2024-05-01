@@ -7,9 +7,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { history } from 'src/helpers';
 import { authActions } from 'src/store';
 
-export { Login };
+export { Auth };
 
-function Login() {
+function Auth() {
     const dispatch = useDispatch();
     const authUser = useSelector(x => x.auth.user);
     const authError = useSelector(x => x.auth.error);
