@@ -82,3 +82,54 @@ svg {
   color: var(--text-light);
   box-shadow: none;
 }
+
+.swiper-button-next,
+.swiper-button-prev {
+  position: absolute;
+  z-index: 100;
+  top: 50%;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  background-color: var(--pale-color);
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  opacity: .5;
+  cursor: pointer;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: inline;
+  font-size: 25px;
+  color: var(--text-dark);
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  opacity: .75;
+}
+
+.swiper-button-next {
+  right: 0;
+}
+
+.swiper-button-next::after {
+  content: '↷';
+}
+
+.swiper-button-prev {
+  left: 0;
+}
+
+.swiper-button-prev::after {
+  content: '↶';
+}
+
+@media (max-width: 768px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none;
+  }
+}

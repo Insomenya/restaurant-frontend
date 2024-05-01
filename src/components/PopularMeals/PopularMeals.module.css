@@ -1,0 +1,23 @@
+.popular_container {
+    width: 100%;
+}
+
+.popular_container .popular_slider {
+    width: 100%;
+}
+
+.popular_container .popular_header {
+    color: var(--text-dark);
+}
+
+@media (max-width: 768px) {
+    .popular_container .popular_slider {
+        padding: 0;
+    }
+}
+
+@media (min-width: 768px) {
+    .popular_container .popular_slider {
+        padding: 30px;
+    }
+}

@@ -19,7 +19,8 @@ export const menuReducer = slice.reducer;
 
 function createInitialState() {
     return {
-        menu: {}
+        menu: {},
+        popular: {}
     }
 }
 
@@ -27,7 +28,8 @@ function createExtraActions() {
     const baseUrl = `${import.meta.env.VITE_REACT_APP_API_URL}/menu/`;
 
     return {
-        getMenu: getMenu()
+        getMenu: getMenu(),
+        getPopular: getPopular()
     };
 
     function getMenu() {
@@ -36,16 +38,24 @@ function createExtraActions() {
             async () => await fetchWrapper.get(baseUrl)
         );
     }
+
+    function getPopular() {
+        return createAsyncThunk(
+            `${name}/getPopular`,
+            async () => await fetchWrapper.get(`${baseUrl}popular/`)
+        );
+    }
 }
 
 function createExtraReducers() {
-    var { pending, fulfilled, rejected } = extraActions.getMenu;
+    var getMenu = extraActions.getMenu;
+    var getPopular = extraActions.getPopular;
 
     return builder => {
-        builder.addCase(pending, (state) => {
+        builder.addCase(getMenu.pending, (state) => {
             state.menu = { loading: true };
         })
-        builder.addCase(fulfilled, (state, action) => {
+        builder.addCase(getMenu.fulfilled, (state, action) => {
             let meals = action.payload;
 
             if (meals.length) {
@@ -76,8 +86,19 @@ function createExtraReducers() {
                 state.menu = []
             }
         })
-        builder.addCase(rejected, (state, action) => {
+        builder.addCase(getMenu.rejected, (state, action) => {
             state.menu = { error: action.error };
+        })
+        builder.addCase(getPopular.pending, (state) => {
+            state.popular = { loading: true };
+        })
+        builder.addCase(getPopular.fulfilled, (state, action) => {
+            let popular = action.payload;
+
+            state.popular = popular;
+        })
+        builder.addCase(getPopular.rejected, (state, action) => {
+            state.popular = { error: action.error };
         })
     };
 }

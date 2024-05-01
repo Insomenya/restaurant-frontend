@@ -12,3 +12,4 @@ export * from './OrderMealList/OrderMealList';
 export * from './OldOrders/OldOrders';
 export * from './RegisterForm/RegisterForm';
 export * from './LoginForm/LoginForm';
+export * from './PopularMeals/PopularMeals';

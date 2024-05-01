@@ -49,6 +49,7 @@
     line-height: 1.2;
     width: 100%;
     margin: 0;
+    height: 55px;
 }
 
 .meal_container .meal_description {
@@ -145,5 +146,11 @@
 
     .meal_container .meal_price {
         font-size: 15px;
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    .meal_container .meal_name {
+        height: 45px;
     }
 }
