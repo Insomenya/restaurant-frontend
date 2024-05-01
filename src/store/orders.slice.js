@@ -19,7 +19,8 @@ export const ordersReducer = slice.reducer;
 
 function createInitialState() {
     return {
-        orders: []
+        orders: null,
+        error: null
     }
 }
 
@@ -53,6 +54,9 @@ function createExtraReducers() {
     return builder => {
         builder.addCase(getOrders.pending, (state) => {
             state.error = null;
+            state.orders = {
+                loadging: true
+            }
         })
         builder.addCase(getOrders.fulfilled, (state, action) => {
             state.orders = action.payload;

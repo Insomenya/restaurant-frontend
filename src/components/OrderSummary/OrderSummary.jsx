@@ -45,9 +45,6 @@ function OrderSummary({ addControls }) {
                     <div className="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                         <h6 className={`mb-0 ${classes.list_item_price}`}>{item.price * item.quantity}<span className={`${classes.rub}`}>р</span></h6>
                     </div>
-                    <div className="col-md-1 col-lg-1 col-xl-1 text-end">
-                        <a href="#!" className="text-muted"><i className="fas fa-times"></i></a>
-                    </div>
                 </div>
 
                 <hr className="my-4"></hr>

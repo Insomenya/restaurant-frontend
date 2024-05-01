@@ -8,5 +8,7 @@ export * from './TopButton/TopButton';
 export * from './Footer/Footer';
 export * from './MenuMeal/MenuMeal';
 export * from './OrderSummary/OrderSummary';
+export * from './OrderMealList/OrderMealList';
+export * from './OldOrders/OldOrders';
 export * from './RegisterForm/RegisterForm';
 export * from './LoginForm/LoginForm';

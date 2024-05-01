@@ -41,7 +41,7 @@ function MainNavigation() {
                             <li className='nav-item'>
                                 {authUser ?
                                     (
-                                        <NavLink to="/cart" d className="nav-link">
+                                        <NavLink to="/cart" className="nav-link">
                                             <CiShoppingBasket></CiShoppingBasket> Корзина {isEmpty ? '' :
                                                 (
                                                     <span className={`${classes.cart_count}`}>{totalUniqueItems}</span>
