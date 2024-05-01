@@ -28,13 +28,21 @@ function createInitialState() {
 
 function createReducers() {
     return {
-        logout
+        logout,
+        savePassword
     };
 
     function logout(state) {
         state.user = null;
+        state.afterRegUser = null;
         localStorage.removeItem('user');
         history.navigate('/auth');
+    }
+
+    function savePassword(state, action) {
+        state.afterRegUser = {
+            password: action.payload
+        };
     }
 }
 
@@ -90,10 +98,23 @@ function createExtraReducers() {
         builder.addCase(authenticate.fulfilled, (state, action) => {
             const accessToken = action.payload.access;
             
-            state.user = {
-                ...state.user,
-                token: accessToken
-            };
+            if (state.afterRegUser) {
+                let user = {
+                    ...state.afterRegUser,
+                    token: accessToken
+                };
+
+                state.user = user;
+                state.afterRegUser = null;
+
+                localStorage.setItem('user', JSON.stringify(user));
+                history.navigate('/');
+            } else {
+                state.user = {
+                    ...state.user,
+                    token: accessToken
+                };
+            }
         })
         builder.addCase(authenticate.rejected, (state, action) => {
             state.error = action.error;
@@ -130,15 +151,13 @@ function createExtraReducers() {
         })
         builder.addCase(createUser.fulfilled, (state, action) => {
             const userData = action.payload;
+
             const user = {
-                ...state.user,
+                ...state.afterRegUser,
                 ...userData,
             };
 
-            state.user = user;
-
-            localStorage.setItem('user', JSON.stringify(user));
-            history.navigate('/');
+            state.afterRegUser = user;
         })
         builder.addCase(createUser.rejected, (state, action) => {
             state.error = action.error;

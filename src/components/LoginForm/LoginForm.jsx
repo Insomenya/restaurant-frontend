@@ -13,13 +13,8 @@ export { LoginForm };
 function LoginForm() {
 
     const dispatch = useDispatch();
-    const usernameSet = useSelector(x => x.auth.user?.username);
     const authToken = useSelector(x => x.auth.user?.token);
     const authError = useSelector(x => x.auth.error);
-
-    useEffect(() => {
-        if (usernameSet) history.navigate('/');
-    }, []);
 
     useEffect(() => {
         if (authToken) dispatch(authActions.getUserData())
@@ -52,14 +47,14 @@ function LoginForm() {
                 <div className="invalid-feedback">{errors.password?.message}</div>
             </div>
 
-            <div className='d-flex justify-content-center align-items-center'>
+            <div className='d-flex flex-wrap justify-content-center align-items-center'>
                 <button disabled={isSubmitting} className={`btn ${classes.form_control} ${classes.form_button}`}>
                     {isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}
                     Войти
                 </button>
 
                 {authError &&
-                    <div className="alert alert-danger mt-3 mb-0">{authError.message}</div>
+                    <div className="alert alert-danger w-100 mt-3 mb-0">{authError.message}</div>
                 }
             </div>
 

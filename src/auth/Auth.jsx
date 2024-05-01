@@ -1,71 +1,52 @@
+import classes from './Auth.module.css';
+import { LoginForm, RegisterForm } from 'src/components';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import { useEffect } from 'react';
-import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
-import { useSelector, useDispatch } from 'react-redux';
-
-import { history } from 'src/helpers';
-import { authActions } from 'src/store';
+import { useSelector } from 'react-redux';
 
 export { Auth };
 
 function Auth() {
-    const dispatch = useDispatch();
-    const authUser = useSelector(x => x.auth.user);
-    const authError = useSelector(x => x.auth.error);
+
+    const usernameSet = useSelector(x => x.auth.user?.username);
 
     useEffect(() => {
-        // redirect to home if already logged in
-        if (authUser) history.navigate('/');
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        if (usernameSet) history.navigate('/');
     }, []);
 
-    // form validation rules 
-    const validationSchema = Yup.object().shape({
-        username: Yup.string().required('Username is required'),
-        password: Yup.string().required('Password is required')
-    });
-    const formOptions = { resolver: yupResolver(validationSchema) };
-
-    // get functions to build form with useForm() hook
-    const { register, handleSubmit, formState } = useForm(formOptions);
-    const { errors, isSubmitting } = formState;
-
-    function onSubmit({ username, password }) {
-        return dispatch(authActions.login({ username, password }));
-    }
-
     return (
-        <div className="col-md-6 offset-md-3 mt-5">
-            <div className="alert alert-info">
-                Username: test<br />
-                Password: test
-            </div>
-            <div className="card">
-                <h4 className="card-header">Login</h4>
-                <div className="card-body">
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className="form-group">
-                            <label>Username</label>
-                            <input name="username" type="text" {...register('username')} className={`form-control ${errors.username ? 'is-invalid' : ''}`} />
-                            <div className="invalid-feedback">{errors.username?.message}</div>
-                        </div>
-                        <div className="form-group">
-                            <label>Password</label>
-                            <input name="password" type="password" {...register('password')} className={`form-control ${errors.password ? 'is-invalid' : ''}`} />
-                            <div className="invalid-feedback">{errors.password?.message}</div>
-                        </div>
-                        <button disabled={isSubmitting} className="btn btn-primary">
-                            {isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}
-                            Login
-                        </button>
-                        {authError &&
-                            <div className="alert alert-danger mt-3 mb-0">{authError.message}</div>
-                        }
-                    </form>
+        <div className={`container px-0 ${classes.form_container} h-100 py-5`}>
+
+            <div className={`card card-registration card-registration-2 d-flex justify-content-center align-items-center ${classes.form_wrapper}`}>
+
+                <div className={`card-body p-5 d-flex justify-content-between align-items-stretch flex-column ${classes.card_body}`}>
+
+                    <div className="d-flex justify-content-between align-items-center mb-5 flex-wrap">
+                        <h2 className="fw-bold mb-0 text-black text-center w-100">Авторизация</h2>
+                    </div>
+
+                    <Tabs>
+                        <TabList className={`nav nav-pills mb-3 ${classes.tabs_container}`}>
+                            <Tab className={`${classes.tab}`}>
+                                <button className={`btn ${classes.form_control}`}>Вход</button>
+                            </Tab>
+                            <Tab className={`${classes.tab}`}>
+                                <button className={`btn ${classes.form_control} `}>Регистрация</button>
+                            </Tab>
+                        </TabList>
+
+                        <TabPanel>
+                            <LoginForm></LoginForm>
+                        </TabPanel>
+                        <TabPanel>
+                            <RegisterForm></RegisterForm>
+                        </TabPanel>
+                    </Tabs>
+
                 </div>
+
             </div>
+
         </div>
     )
 }
