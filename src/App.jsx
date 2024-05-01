@@ -10,6 +10,7 @@ import { useEffect, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Cart } from 'src/cart';
 import { History } from 'src/history';
+import { About } from './about';
 
 export { App };
 
@@ -32,11 +33,12 @@ function App() {
     <div className="app-container">
       <a ref={topRef}></a>
       <MainNavigation />
-      <div className="container pb-4">
+      <div className="pb-4">
         <Hero></Hero>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/auth" element={<Auth />} />
+          <Route path="/about" element={<About />} />
           <Route
             path="/cart"
             element={

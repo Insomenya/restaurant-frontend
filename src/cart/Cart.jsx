@@ -5,7 +5,6 @@ import { CiTrash, CiTurnL1 } from 'react-icons/ci';
 import { OrderSummary, PopularMeals } from 'src/components';
 import { NavLink } from 'react-router-dom';
 import { ordersActions } from 'src/store';
-import React from 'react';
 
 
 export { Cart };
@@ -33,7 +32,7 @@ function Cart() {
     }
 
     return (
-        <React.Fragment>
+        <div className='container px-0'>
             <section className={`h-100 h-custom ${classes.cart_container}`}>
                 <div className="container py-5 px-0 h-100">
                     <div className="row d-flex justify-content-center align-items-center h-100">
@@ -91,6 +90,6 @@ function Cart() {
             </section>
 
             <PopularMeals></PopularMeals>
-        </React.Fragment>
+        </div>
     );
 }
