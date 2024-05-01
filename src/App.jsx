@@ -2,15 +2,15 @@ import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-
 
 import { history } from 'src/helpers';
 import { Footer, Hero, MainNavigation, PrivateRoute, TopButton } from 'src/components';
-import { Home } from 'src/home';
-import { Auth } from 'src/auth';
+import { Home } from 'src/pages/home';
+import { Auth } from 'src/pages/auth';
 import { menuActions, authActions } from 'src/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { Cart } from 'src/cart';
-import { History } from 'src/history';
-import { About } from './about';
+import { Cart } from 'src/pages/cart';
+import { History } from 'src/pages/history';
+import { About } from 'src/pages/about';
 
 export { App };
 
