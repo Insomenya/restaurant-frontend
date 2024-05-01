@@ -1,10 +1,11 @@
 import { useCart } from 'react-use-cart';
 import classes from './MenuMeal.module.css';
+import { useSelector } from 'react-redux';
 
 export { MenuMeal };
 
 function MenuMeal({ meal, isGrid }) {
-
+    const authUser = useSelector(x => x.auth.user);
     const { inCart, getItem, updateItemQuantity, addItem } = useCart();
 
     const mealToAdd = {
@@ -57,7 +58,7 @@ function MenuMeal({ meal, isGrid }) {
                 </div>
                 <div className={`${classes.meal_footer}`}>
                     <div className={`${classes.meal_price}`}>{meal.price}<span className={`${classes.rub}`}>р</span></div>
-                    {showButton()}
+                    {authUser ? showButton() : ''}
                 </div>
             </div>
         </div>

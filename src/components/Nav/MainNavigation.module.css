@@ -42,3 +42,14 @@
     border-radius: 50%;
     font-weight: 400;
 }
+
+.custom_nav .custom_button {
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    display: inline-block;
+    padding: 0 30px!important;
+    background-color: var(--main-color);
+    color: var(--text-dark);
+    border-radius: 2000px;
+}

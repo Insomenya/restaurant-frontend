@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 
 import { history } from 'src/helpers';
-import { Footer, Hero, MainNavigation, PrivateRoute, RegisterForm, TopButton } from 'src/components';
+import { Footer, Hero, MainNavigation, PrivateRoute, TopButton } from 'src/components';
 import { Home } from 'src/home';
 import { Auth } from 'src/auth';
 import { menuActions, authActions } from 'src/store';
@@ -36,10 +36,23 @@ function App() {
         <Hero></Hero>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/cart" element={<Cart />} />
           <Route path="/auth" element={<Auth />} />
-          <Route path="/reg" element={<RegisterForm />} />
-          <Route path="/profile" element={<History />} />
+          <Route
+            path="/cart"
+            element={
+              <PrivateRoute>
+                <Cart />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <History />
+              </PrivateRoute>
+            }
+          />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
         {isNotMobile &&

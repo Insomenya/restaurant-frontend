@@ -39,28 +39,45 @@ function MainNavigation() {
                     <form className='d-flex'>
                         <ul className="navbar-nav mb-2 mb-lg-0 w-100">
                             <li className='nav-item'>
-                                <NavLink to="/cart" className="nav-link">
-                                    <CiShoppingBasket></CiShoppingBasket> Корзина {
-                                        isEmpty ? '' :
-                                        (
-                                            <span className={`${classes.cart_count}`}>{totalUniqueItems}</span>
-                                        )
-                                    }
-                                </NavLink>
+                                {authUser ?
+                                    (
+                                        <NavLink to="/cart" d className="nav-link">
+                                            <CiShoppingBasket></CiShoppingBasket> Корзина {isEmpty ? '' :
+                                                (
+                                                    <span className={`${classes.cart_count}`}>{totalUniqueItems}</span>
+                                                )
+                                            }
+                                        </NavLink>
+                                    ) :
+                                    (
+                                        <NavLink to="/auth/" className="nav-link">
+                                            <CiShoppingBasket></CiShoppingBasket> Корзина
+                                        </NavLink> 
+                                    )
+                                }
                             </li>
-                            <li className='nav-item dropdown'>
-                                <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    admin@app.com
-                                </a>
-                                <ul className='dropdown-menu navbar-light' aria-labelledby="navbarDropdownMenuLink">
-                                    <li>
-                                        <NavLink to="/profile" className={`nav-link dropdown-item ${classes.custom_dropdown_item}`}>История заказов</NavLink>
+                            {authUser ?
+                                (
+                                    <li className='nav-item dropdown'>
+                                        <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            {authUser.username}
+                                        </a>
+                                        <ul className='dropdown-menu navbar-light' aria-labelledby="navbarDropdownMenuLink">
+                                            <li>
+                                                <NavLink to="/profile" className={`nav-link dropdown-item ${classes.custom_dropdown_item}`}>История заказов</NavLink>
+                                            </li>
+                                            <li>
+                                                <button onClick={logout} className={`btn btn-link nav-item nav-link dropdown-item ${classes.custom_dropdown_item}`}>Выйти</button>
+                                            </li>
+                                        </ul>
                                     </li>
-                                    <li>
-                                        <button onClick={logout} className={`btn btn-link nav-item nav-link dropdown-item ${classes.custom_dropdown_item}`}>Выйти</button>
+                                ) :
+                                (
+                                    <li className='nav-item'>
+                                        <NavLink to="/auth" className={`nav-link ${classes.custom_button}`}>Войти</NavLink>
                                     </li>
-                                </ul>
-                            </li>
+                                )
+                            }
                         </ul>
                     </form>
                 </div>
