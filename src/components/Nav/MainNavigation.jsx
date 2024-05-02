@@ -6,6 +6,8 @@ import { CiForkAndKnife, CiShoppingBasket, CiLocationOn  } from 'react-icons/ci'
 import { authActions } from 'src/store';
 import { useCart } from 'react-use-cart';
 
+import logoUrl from 'src/assets/img/SV.png';
+
 export { MainNavigation };
 
 function MainNavigation() {
@@ -18,7 +20,7 @@ function MainNavigation() {
         <nav className={`navbar navbar-expand-lg navbar-dark ${classes.custom_nav}`}>
             <div className="container">
                 <NavLink to="/" className='navbar-brand'>
-                    <img src="src/assets/img/SV.png" className={`${classes.logo}`} />
+                    <img src={logoUrl} className={`${classes.logo}`} />
                 </NavLink>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>

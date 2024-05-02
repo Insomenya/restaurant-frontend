@@ -15,15 +15,15 @@ function Auth() {
     }, []);
 
     return (
-        <div className={`container px-0 ${classes.form_container} h-100 py-5`}>
+        <div className={`container px-0 ${classes.form_container} h-100 py-5 d-flex justify-content-center`}>
 
             <div className={`card card-registration card-registration-2 d-flex justify-content-center align-items-center ${classes.form_wrapper}`}>
 
-                <div className={`card-body p-5 d-flex justify-content-between align-items-stretch flex-column ${classes.card_body}`}>
+                <div className="d-flex justify-content-between align-items-center flex-wrap card-header w-100 py-4">
+                    <h2 className="fw-medium mb-0 text-black text-center w-100">Авторизация</h2>
+                </div>
 
-                    <div className="d-flex justify-content-between align-items-center mb-5 flex-wrap">
-                        <h2 className="fw-bold mb-0 text-black text-center w-100">Авторизация</h2>
-                    </div>
+                <div className={`card-body p-5 pt-4 d-flex justify-content-between align-items-stretch flex-column ${classes.card_body}`}>
 
                     <Tabs>
                         <TabList className={`nav nav-pills mb-3 ${classes.tabs_container}`}>

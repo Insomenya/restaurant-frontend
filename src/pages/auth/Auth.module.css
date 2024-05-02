@@ -29,10 +29,12 @@
 .form_container .form_wrapper {
     border-radius: 40px;
     overflow: hidden;
+    width: fit-content;
 }
 
 .form_container .card_body {
     width: 50vw;
+    max-width: 750px;
 }
 
 .form_container .form_panel {

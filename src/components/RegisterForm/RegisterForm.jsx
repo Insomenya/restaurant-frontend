@@ -24,9 +24,9 @@ function RegisterForm() {
     }, [email]);
 
     const validationSchema = Yup.object().shape({
-        email: Yup.string().email('Необходимо предоставить реальный адрес электронной почты').required('Электронная почта - это обязательное поле'),
+        email: Yup.string().required('Электронная почта - это обязательное поле').email('Необходимо предоставить реальный адрес электронной почты'),
         password: Yup.string().required('Пароль - это обязательное поле').min(8, 'Пароль слишком короткий').matches(/[a-zA-Z0-9_]/, 'Пароль должен состоять из латинских букв и цифр'),
-        phone_number: Yup.string().matches(phoneRegExp, 'Номер телефона записан неправильно')
+        phone_number: Yup.string().required('Номер телефона - это обязательное поле').matches(phoneRegExp, 'Номер телефона записан неправильно')
     });
 
     const formOptions = { resolver: yupResolver(validationSchema) };
