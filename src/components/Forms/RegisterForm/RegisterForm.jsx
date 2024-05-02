@@ -1,4 +1,4 @@
-import classes from './RegisterForm.module.css';
+import classes from '../Forms.module.css';
 import { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
