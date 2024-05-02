@@ -5,7 +5,7 @@
     background-position: center;
     border-radius: 0 0 40px 40px;
     color: var(--text-light);
-    padding-left: 5%;
+    padding-left: 5%!important;
 }
 
 .hero_section .header_title {
