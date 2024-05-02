@@ -26,7 +26,7 @@ function MainNavigation() {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul className="navbar-nav me-auto mb-0">
                         <li className='nav-item'>
                             <NavLink to="/" className="nav-link">
                                 <CiForkAndKnife></CiForkAndKnife> Меню
@@ -40,7 +40,7 @@ function MainNavigation() {
                     </ul>
                     <form className='d-flex'>
                         <ul className="navbar-nav mb-2 mb-lg-0 w-100">
-                            <li className='nav-item'>
+                            <li className='nav-item mb-2 mb-lg-0 mx-0 mx-lg-2'>
                                 {authUser ?
                                     (
                                         <NavLink to="/cart" className="nav-link">
