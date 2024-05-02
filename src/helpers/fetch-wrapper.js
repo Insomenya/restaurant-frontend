@@ -17,7 +17,7 @@ function request(method) {
             requestOptions.headers['Content-Type'] = 'application/json';
             requestOptions.body = JSON.stringify(body);
         }
-        return fetch(url, requestOptions).then(handleResponse);
+        return fetch(url + '?format=json', requestOptions).then(handleResponse);
     }
 }
 
