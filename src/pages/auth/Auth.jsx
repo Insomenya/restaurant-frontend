@@ -15,7 +15,7 @@ function Auth() {
     }, []);
 
     return (
-        <div className={`container px-0 ${classes.form_container} h-100 py-5 d-flex justify-content-center`}>
+        <div className={`container px-lg-0 ${classes.form_container} h-100 py-5 d-flex justify-content-center`}>
 
             <div className={`card card-registration card-registration-2 d-flex justify-content-center align-items-center ${classes.form_wrapper}`}>
 

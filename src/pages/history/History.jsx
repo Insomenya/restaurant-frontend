@@ -28,7 +28,7 @@ function History() {
     }
 
     return (
-        <div className={`container px-0 ${classes.history}`}>
+        <div className={`container px-lg-0 ${classes.history}`}>
             <div className='py-4'>
                 <h2 className='pb-2'>Список заказов</h2>
                 {store.orders && (
