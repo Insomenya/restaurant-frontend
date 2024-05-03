@@ -160,7 +160,9 @@ function createExtraReducers() {
             state.afterRegUser = user;
         })
         builder.addCase(createUser.rejected, (state, action) => {
-            state.error = action.error;
+            state.error = {
+                message: 'Введен уже существующий номер телефона или почтовый адрес.'
+            }
         })
     };
 }
