@@ -57,7 +57,7 @@ function RegisterForm() {
             </div>
 
             <div className="form-group">
-                <input type="text" name="password" {...register('password')} className={`form-control ${classes.form_control} ${classes.slim} ${errors.password ? 'is-invalid' : ''}`} placeholder="Пароль"></input>
+                <input type="password" name="password" {...register('password')} className={`form-control ${classes.form_control} ${classes.slim} ${errors.password ? 'is-invalid' : ''}`} placeholder="Пароль"></input>
                 <div className="invalid-feedback">{errors.password?.message}</div>
             </div>
 
