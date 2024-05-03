@@ -32,7 +32,7 @@ function Cart() {
     }
 
     return (
-        <div className='container px-0'>
+        <div className='container px-lg-0'>
             <section className={`h-100 h-custom ${classes.cart_container}`}>
                 <div className="container py-5 px-0 h-100">
                     <div className="row d-flex justify-content-center align-items-center h-100">

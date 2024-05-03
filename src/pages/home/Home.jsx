@@ -10,7 +10,7 @@ function Home() {
     const mbc = menu.mealsByCategory;
 
     return (
-        <div className='container px-0'>
+        <div className='container px-lg-0'>
             {mbc?.length &&
                 <>
                     <Categories></Categories>
