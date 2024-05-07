@@ -1,0 +1,51 @@
+.meal_image {
+    max-width: 300px;
+}
+
+.rub {
+    margin-left: 2px;
+    font-size: .75em;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.meal_description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 220px;
+}
+
+.meal_form {
+    text-decoration: none;
+}
+
+.meal_form .custom_input {
+    font-weight: 400;
+    border-radius: 2000px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.meal_form .custom_input:focus {
+    border-color: var(--sub-color);
+    box-shadow: 0 0 0 .25rem rgba(179, 123, 60, 0.25);
+}
+
+.meal_form .custom_button {
+    font-weight: 400;
+    font-size: 18px;
+    border-radius: 2000px;
+    width: 100%;
+    color: var(--text-dark);
+    box-shadow: none;
+    border-color: var(--sub-color);
+}
+
+.meal_form .custom_button:hover,
+.meal_form .custom_button:active,
+.meal_form .custom_button:focus {
+    color: var(--text-light);
+    border-color: var(--main-color);
+    box-shadow: none;
+    background-color: var(--main-color);
+}

@@ -1,12 +1,16 @@
 import { useCart } from 'react-use-cart';
 import classes from './MenuMeal.module.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useMediaQuery } from 'react-responsive';
+import { menuActions } from 'src/store';
 
 export { MenuMeal };
 
 function MenuMeal({ meal, isGrid }) {
     const authUser = useSelector(x => x.auth.user);
     const { inCart, getItem, updateItemQuantity, addItem } = useCart();
+    const isNotMobile = useMediaQuery({ query: '(min-width: 992px)' });
+    const dispatch = useDispatch();
 
     const mealToAdd = {
         id: meal.id,
@@ -26,6 +30,10 @@ function MenuMeal({ meal, isGrid }) {
 
     const removeSome = (mealInCart) => {
         updateItemQuantity(mealInCart.id, mealInCart.quantity - 1);
+    }
+
+    const showModal = (mealId) => {
+        dispatch(menuActions.getMeal(mealId));
     }
 
     const showButton = () => {
@@ -53,7 +61,7 @@ function MenuMeal({ meal, isGrid }) {
             </div>
             <div className={`${classes.meal_data}`}>
                 <div className={`${classes.meal_header}`}>
-                    <h3 className={`${classes.meal_name}`}>{meal.name}</h3>
+                    <h3 className={`${classes.meal_name} ${(isNotMobile ? classes.pushable : '')}`} onClick={() => { if (isNotMobile) showModal(meal.id) }}>{meal.name}</h3>
                     <div className={`${classes.meal_description}`}>{meal.description}</div>
                 </div>
                 <div className={`${classes.meal_footer}`}>

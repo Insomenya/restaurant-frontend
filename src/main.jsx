@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
 import 'swiper/css';
 import 'react-tabs/style/react-tabs.css';
+import 'rodal/lib/rodal.css';
 import './index.css';
 
 const container = document.getElementById('root');

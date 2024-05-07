@@ -6,9 +6,10 @@ import { fetchWrapper } from 'src/helpers';
 
 const name = 'menu';
 const initialState = createInitialState();
+const reducers = createReducers();
 const extraActions = createExtraActions();
 const extraReducers = createExtraReducers();
-const slice = createSlice({ name, initialState, extraReducers });
+const slice = createSlice({ name, initialState, reducers, extraReducers });
 
 // exports
 
@@ -20,7 +21,25 @@ export const menuReducer = slice.reducer;
 function createInitialState() {
     return {
         menu: {},
-        popular: {}
+        popular: {},
+        modal: {
+            data: null,
+            loading: false,
+            isModalVisible: false,
+            error: null
+        }
+    }
+}
+
+function createReducers() {
+    return {
+        closeModal
+    };
+
+    function closeModal(state) {
+        state.modal.isModalVisible = false;
+        state.modal.data = null;
+        state.modal.error = null;
     }
 }
 
@@ -29,7 +48,8 @@ function createExtraActions() {
 
     return {
         getMenu: getMenu(),
-        getPopular: getPopular()
+        getPopular: getPopular(),
+        getMeal: getMeal(),
     };
 
     function getMenu() {
@@ -45,11 +65,19 @@ function createExtraActions() {
             async () => await fetchWrapper.get(`${baseUrl}popular/`)
         );
     }
+
+    function getMeal() {
+        return createAsyncThunk(
+            `${name}/getMeal`,
+            async (mealId) => await fetchWrapper.get(`${baseUrl}${mealId}`)
+        );
+    }
 }
 
 function createExtraReducers() {
     var getMenu = extraActions.getMenu;
     var getPopular = extraActions.getPopular;
+    var getMeal = extraActions.getMeal;
 
     return builder => {
         builder.addCase(getMenu.pending, (state) => {
@@ -99,6 +127,20 @@ function createExtraReducers() {
         })
         builder.addCase(getPopular.rejected, (state, action) => {
             state.popular = { error: action.error };
+        })
+        builder.addCase(getMeal.pending, (state) => {
+            state.modal.loading = true;
+        })
+        builder.addCase(getMeal.fulfilled, (state, action) => {
+            let mealDetail = action.payload;
+
+            state.modal.loading = false;
+            state.modal.data = mealDetail;
+            state.modal.isModalVisible = true;
+        })
+        builder.addCase(getMeal.rejected, (state, action) => {
+            state.modal.loading = false;
+            state.modal.error = action.error;
         })
     };
 }
