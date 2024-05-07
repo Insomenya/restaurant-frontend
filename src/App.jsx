@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 
 import { history } from 'src/helpers';
-import { Footer, Hero, MainNavigation, PrivateRoute, TopButton } from 'src/components';
+import { Footer, Hero, MainNavigation, MealModal, PrivateRoute, TopButton } from 'src/components';
 import { Home } from 'src/pages/home';
 import { Auth } from 'src/pages/auth';
 import { menuActions, authActions } from 'src/store';
@@ -11,12 +11,14 @@ import { useMediaQuery } from 'react-responsive';
 import { Cart } from 'src/pages/cart';
 import { History } from 'src/pages/history';
 import { About } from 'src/pages/about';
+import Rodal from 'rodal';
 
 export { App };
 
 function App() {
   const isNotMobile = useMediaQuery({ query: '(min-width: 992px)' });
   const token = useSelector(x => x.auth.user?.token);
+  const isModalVisible = useSelector(x => x.menu.modal.isModalVisible);
   const dispatch = useDispatch();
   const topRef = useRef();
   history.navigate = useNavigate();
@@ -28,6 +30,10 @@ function App() {
       dispatch(authActions.verifyToken({ token }));
     }
   }, []);
+
+  const closeModal = () => {
+    dispatch(menuActions.closeModal());
+  }
 
   return (
     <div className="app-container">
@@ -62,6 +68,13 @@ function App() {
         }
       </div>
       <Footer></Footer>
+      <Rodal visible={isModalVisible} onClose={() => { closeModal() }} height={600} width={800} customStyles={{
+        borderRadius: '40px',
+        padding: '30px',
+        paddingRight: '50px'
+      }}>
+        <MealModal></MealModal>
+      </Rodal>
     </div>
   );
 }

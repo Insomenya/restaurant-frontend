@@ -57,6 +57,15 @@
     text-overflow: ellipsis;
 }
 
+.meal_container .meal_name.pushable {
+    cursor: pointer;
+}
+
+.meal_container .meal_name.pushable:hover,
+.meal_container .meal_name.pushable:active {
+    color: var(--sub-color);
+}
+
 .meal_container .meal_description {
     margin-top: auto;
     height: 44px;

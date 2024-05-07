@@ -127,6 +127,20 @@ svg {
   content: '↶';
 }
 
+.rodal-close {
+  width: 30px;
+  height: 30px;
+  top: 30px;
+  right: 30px;
+}
+
+.rodal-close:hover::before,
+.rodal-close:active::before,
+.rodal-close:hover::after,
+.rodal-close:active::after {
+  background-color: var(--sub-color);
+}
+
 @media (max-width: 768px) {
   .swiper-button-next,
   .swiper-button-prev {
