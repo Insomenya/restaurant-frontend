@@ -21,7 +21,7 @@ function MealModal() {
             let mealToAdd = {
                 id: mealDetail.id,
                 name: mealDetail.name,
-                img: mealDetail.img,
+                img: mealDetail.img_cart,
                 price: mealDetail.price,
                 category: mealDetail.category_name,
                 quantity: newQuantity
@@ -60,13 +60,13 @@ function MealModal() {
                             <hr className="my-4"></hr>
                             <div className={`row d-flex justify-content-end ${classes.meal_form}`}>
                                 <div className="col-4">
-                                    <div className="d-flex flex-row align-items-center mb-1">
-                                        <h4 className="mb-1 me-1">{mealDetail.price}<span className={`${classes.rub}`}>р</span></h4>
+                                    <div className="d-flex flex-row align-items-center mb-2">
+                                        <h4 className="mb-0 me-1">{mealDetail.price}<span className={`${classes.rub}`}>р</span></h4>
                                     </div>
                                     <h6 className="text-success">В корзине:</h6>
-                                    <div className="d-flex flex-column mt-4">
-                                        <input className={`form-control ${classes.custom_input}`} type="number" min={0} max={100} step={1} value={currentCartItem.quantity} onChange={(e) => { handleChange(e.target.value) }} />
-                                        <NavLink to="/cart" onClick={() => { closeModal() }} className={`btn btn-outline-primary btn-sm mt-2 ${classes.custom_button}`}>Перейти в корзину</NavLink>
+                                    <div className={`d-flex flex-column mt-3 ${classes.form_wrapper}`}>
+                                        <input className={`form-control ${classes.custom_input}`} type="number" min={0} max={100} step={1} value={Number(currentCartItem.quantity)} onChange={(e) => { handleChange(Number(e.target.value)) }} />
+                                        <NavLink to="/cart" onClick={() => { closeModal() }} className={`btn btn-outline-primary btn-sm mt-3 ${classes.custom_button}`}>Перейти в корзину</NavLink>
                                     </div>
                                 </div>
                             </div>
