@@ -21,7 +21,7 @@ function MealModal() {
             let mealToAdd = {
                 id: mealDetail.id,
                 name: mealDetail.name,
-                img: mealDetail.img,
+                img: mealDetail.img_cart,
                 price: mealDetail.price,
                 category: mealDetail.category_name,
                 quantity: newQuantity
