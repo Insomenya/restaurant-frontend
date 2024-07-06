@@ -1,6 +1,6 @@
 # Restaurant frontend
 
-A simple SPA, made with [Vite](https://vitejs.dev/) + [React](https://react.dev/).
+A simple SPA, made with [Vite](https://vitejs.dev/) + [React](https://react.dev/)/[Redux](https://redux.js.org/) [toolkit](https://redux-toolkit.js.org/).
 
 ## Features
 
