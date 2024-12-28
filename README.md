@@ -26,6 +26,12 @@ npm install
 npm run dev
 ```
 
+## Live version
+
+You can visit this [page](https://insomenya.github.io/restaurant-frontend/). 
+
+Do not refresh the page for it will lose the correct path. This problem is present in Vite react + gh-pages deployments.
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
